@@ -4,7 +4,9 @@
   "exports": {
     "./counter": "./components/counter.ts",
     "./header": "./components/header.ts",
-    "./setup-counter": "./utils/counter.ts"
+    "./setup-counter": "./utils/counter.ts",
+    "./cn": "./utils/cn.ts",
+    ".": "./index.ts"
   },
   "license": "MIT",
   "scripts": {
@@ -15,5 +17,9 @@
     "@repo/typescript-config": "workspace:*",
     "eslint": "^8.57.0",
     "typescript": "5.5.4"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.5"
   }
 }
