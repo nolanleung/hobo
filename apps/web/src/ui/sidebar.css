@@ -1,7 +1,0 @@
-.sidebar {
-  @apply lg:w-64 lg:h-auto h-14 bg-sidebar;
-
-  &.border {
-    @apply border-b lg:border-r lg:border-b-0 border-sidebar-accent;
-  }
-}
