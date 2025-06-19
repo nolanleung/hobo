@@ -3,7 +3,7 @@
  */
 import { createHTTPServer } from "@trpc/server/adapters/standalone";
 import { z } from "zod";
-import { publicProcedure, router } from "./trpc.js";
+import { publicProcedure, router } from "../trpc.js";
 
 const appRouter = router({
   user: {
