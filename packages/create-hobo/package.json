@@ -1,0 +1,56 @@
+{
+  "name": "create-hobo",
+  "version": "0.2.0",
+  "description": "Create a new Hobo project with an interactive CLI",
+  "keywords": ["hobo", "create", "scaffold", "nextjs", "trpc", "prisma"],
+  "homepage": "https://github.com/yourusername/hobo#readme",
+  "bugs": {
+    "url": "https://github.com/yourusername/hobo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/hobo.git",
+    "directory": "packages/create-hobo"
+  },
+  "license": "MIT",
+  "author": "Your Name",
+  "type": "module",
+  "bin": {
+    "create-hobo": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "lint": "eslint . --max-warnings 0",
+    "prepublishOnly": "pnpm build",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "execa": "^8.0.1",
+    "fs-extra": "^11.2.0",
+    "ink": "^4.4.1",
+    "ink-select-input": "^5.0.0",
+    "ink-spinner": "^5.0.0",
+    "ink-text-input": "^5.0.1",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.11.1",
+    "@types/react": "^18.2.48",
+    "eslint": "^8.56.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
