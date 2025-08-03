@@ -1,31 +1,33 @@
 {
   "name": "@repo/database",
   "version": "1.0.0",
-  "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev --skip-generate",
-    "db:deploy": "prisma migrate deploy"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:drop": "drizzle-kit drop"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@prisma/client": "^6.11.1",
-    "typescript": "^5.8.3"
+    "dotenv": "^17.2.1",
+    "drizzle-orm": "^0.44.4",
+    "pg": "^8.16.3",
+    "typescript": "^5.9.2"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:^",
-    "@types/node": "^20.19.4",
-    "prisma": "^6.11.1"
-  },
-  "prisma": {
-    "schema": "prisma/"
+    "@types/node": "^24.1.0",
+    "@types/pg": "^8.15.5",
+    "drizzle-kit": "^0.31.4",
+    "tsx": "^4.20.3"
   },
   "exports": {
     ".": {
-      "default": "./src/index.ts"
+      "import": "./src/index.ts"
     }
   }
 }

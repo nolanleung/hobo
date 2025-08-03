@@ -1,7 +1,7 @@
 "use client";
 
-import { authClient } from "@repo/auth/client";
 import { type Session } from "@repo/auth";
+import { authClient } from "@repo/auth/client";
 import {
   createContext,
   useContext,
@@ -16,6 +16,7 @@ interface AuthContextType {
   signIn: typeof authClient.signIn;
   signUp: typeof authClient.signUp;
   signOut: typeof authClient.signOut;
+  refreshSession: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -23,29 +24,21 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const refreshSession = async () => {
+    try {
+      setLoading(true);
+      const { data } = await authClient.getSession();
+      setSession(data);
+    } catch (error) {
+      console.error("Failed to refresh session:", error);
+      setSession(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchSession = async () => {
-      try {
-        const { data } = await authClient.getSession();
-        setSession(data);
-      } catch (error) {
-        console.error("Failed to fetch session:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSession();
-
-    // Subscribe to session changes
-    const unsubscribe = authClient.$sessionSignal.subscribe((newSession) => {
-      setSession(newSession);
-    });
-
-    return () => {
-      unsubscribe();
-    };
+    refreshSession();
   }, []);
 
   return (
@@ -56,6 +49,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         signIn: authClient.signIn,
         signUp: authClient.signUp,
         signOut: authClient.signOut,
+        refreshSession,
       }}
     >
       {children}

@@ -6,9 +6,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "eslint": "^8.57.1",
+    "eslint": "^9.32.0",
     "prettier": "^3.6.2",
-    "turbo": "^2.5.4"
+    "turbo": "^2.5.5"
   },
   "packageManager": "pnpm@8.15.6",
   "name": "create-hobo",

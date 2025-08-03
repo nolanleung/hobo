@@ -8,10 +8,10 @@
   },
   "dependencies": {
     "@trpc/server": "npm:@trpc/server@next",
-    "zod": "^3.25.73"
+    "zod": "^4.0.14"
   },
   "devDependencies": {
-    "@types/node": "^22.16.0",
+    "@types/node": "^22.18.0",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"
   }

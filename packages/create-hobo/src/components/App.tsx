@@ -38,9 +38,9 @@ export const App: React.FC = () => {
   ];
 
   const templates = [
-    { label: 'Full Stack (Next.js + tRPC + Prisma)', value: 'full-stack' },
+    { label: 'Full Stack (Next.js + tRPC + Drizzle)', value: 'full-stack' },
     { label: 'Minimal (Next.js only)', value: 'minimal' },
-    { label: 'API Only (tRPC + Prisma)', value: 'api-only' },
+    { label: 'API Only (tRPC + Drizzle)', value: 'api-only' },
   ];
 
   const handlePackageManager = (item: { value: string }) => {
