@@ -1,6 +1,8 @@
 "use client";
 
 import { useAuth } from "@/components/auth-provider";
+import { Button } from "@repo/ui/components/button";
+
 import Link from "next/link";
 
 export default function Home() {
@@ -24,27 +26,16 @@ export default function Home() {
             <p className="text-muted-foreground text-sm">
               {session.user.email}
             </p>
-            <button
-              onClick={handleSignOut}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 mt-4 rounded-md px-4 py-2 text-sm font-medium"
-            >
-              Sign Out
-            </button>
+            <Button onClick={handleSignOut}>Sign Out</Button>
           </div>
         ) : (
           <div className="space-x-4">
-            <Link
-              href="/login"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 inline-block rounded-md px-4 py-2 text-sm font-medium"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/signup"
-              className="hover:bg-accent inline-block rounded-md border px-4 py-2 text-sm font-medium"
-            >
-              Sign Up
-            </Link>
+            <Button asChild>
+              <Link href="/login">Sign In</Link>
+            </Button>
+            <Button variant="outline" asChild>
+              <Link href="/signup">Sign Up</Link>
+            </Button>
           </div>
         )}
       </div>

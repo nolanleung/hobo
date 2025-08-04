@@ -31,7 +31,6 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsx src/index.ts",
     "lint": "eslint . --max-warnings 0",
     "prepublishOnly": "pnpm build",
     "type-check": "tsc --noEmit"

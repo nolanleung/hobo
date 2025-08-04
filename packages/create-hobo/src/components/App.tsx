@@ -18,6 +18,7 @@ export const App: React.FC = () => {
   const [step, setStep] = useState<Step>('projectName');
   const [config, setConfig] = useState<Partial<ProjectConfig>>({});
   const [error, setError] = useState<string>('');
+  const [projectNameInput, setProjectNameInput] = useState<string>('');
 
   const handleProjectName = (value: string) => {
     const validation = validateProjectName(value);
@@ -80,8 +81,8 @@ export const App: React.FC = () => {
             <Text>What is your project named?</Text>
           </Box>
           <TextInput
-            value=""
-            onChange={() => {}}
+            value={projectNameInput}
+            onChange={setProjectNameInput}
             onSubmit={handleProjectName}
             placeholder="my-hobo-app"
           />

@@ -1,7 +1,7 @@
 // utils
-export { setupCounter } from "./utils/counter";
+export { cn } from "./lib/utils";
 
 // components
-export { Header } from "./components/header";
 export { Counter } from "./components/counter";
-export { cn } from "./utils/cn";
+export { Header } from "./components/header";
+

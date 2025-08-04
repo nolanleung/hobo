@@ -25,7 +25,7 @@ export default function LoginPage() {
       });
       refreshSession();
       router.push("/");
-    } catch (err) {
+    } catch {
       setError("Invalid email or password");
     } finally {
       setLoading(false);
@@ -98,7 +98,7 @@ export default function LoginPage() {
 
           <div className="text-center text-sm">
             <span className="text-muted-foreground">
-              Don't have an account?{" "}
+              {"Don't have an account?"}{" "}
             </span>
             <Link
               href="/signup"
