@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "dev": "bun run src/index.ts",
+    "dev": "bun --watch src/index.ts",
     "test-dev": "start-server-and-test 'tsx src/server' 3000 'tsx src/client'",
     "test-start": "start-server-and-test 'node dist/server' 3000 'node dist/client'"
   },
