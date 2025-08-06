@@ -2,10 +2,7 @@ import { db, schema } from "@repo/database";
 import { betterAuth, BetterAuthOptions } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
-const WEB_ORIGIN = process.env.WEB_ORIGIN;
-if (!WEB_ORIGIN) {
-  throw new Error("WEB_ORIGIN environment variable is not set");
-}
+const WEB_ORIGIN = process.env.WEB_ORIGIN || "http://localhost:3000";
 
 const authConfig = {
   trustedOrigins: [WEB_ORIGIN],

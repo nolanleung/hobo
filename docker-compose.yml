@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: hobo
+      POSTGRES_PASSWORD: hobo
+      POSTGRES_DB: hobo
+    ports:
+      - "5432:5432"
