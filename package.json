@@ -11,6 +11,6 @@
     "turbo": "^2.5.5"
   },
   "packageManager": "pnpm@8.15.6",
-  "name": "create-hobo",
+  "name": "hobo",
   "version": "0.1.0"
 }
