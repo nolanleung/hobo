@@ -1,7 +1,7 @@
 "use client";
 
 import { type Session } from "@repo/auth";
-import { authClient } from "@repo/auth/client";
+import { createAuthClient } from "@repo/auth/client";
 import {
   createContext,
   useContext,
@@ -9,6 +9,10 @@ import {
   useState,
   type ReactNode,
 } from "react";
+
+const authClient = createAuthClient(
+  process.env.NEXT_PUBLIC_AUTH_BASE_URL || "http://localhost:8080",
+);
 
 interface AuthContextType {
   session: Session | null;

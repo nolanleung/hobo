@@ -1,0 +1,21 @@
+{
+  "name": "hobo",
+
+  "run": {
+    "command": ["pnpm", "run", "dev"],
+    "initScript": ["pnpm install"],
+  },
+
+  "services": [
+    {
+      "name": "app",
+      "port": 3000,
+      "subdomain": "app",
+    },
+    {
+      "name": "api",
+      "port": 8080,
+      "subdomain": "api",
+    },
+  ],
+}
