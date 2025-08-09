@@ -20,6 +20,6 @@ export const auth = betterAuth(authConfig) as ReturnType<
   typeof betterAuth<typeof authConfig>
 >;
 
-export { toNodeHandler } from "better-auth/node";
+export { fromNodeHeaders, toNodeHandler } from "better-auth/node";
 
 export type Session = typeof auth.$Infer.Session;
