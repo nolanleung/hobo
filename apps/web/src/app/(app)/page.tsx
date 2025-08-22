@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "@/components/auth-provider";
+import { useAuth } from "@/providers/auth-provider";
 import { Button } from "@repo/ui/components/button";
 
 import Link from "next/link";

@@ -1,10 +1,7 @@
-import baseCors, { CorsOptions } from "cors";
+import { cors as baseCors } from "hono/cors";
 
-const origin = process.env.CORS_ORIGIN || process.env.WEB_ORIGIN || "*";
-
-export const cors = (
-  options: CorsOptions = {
-    origin,
+export const cors = (env: any) =>
+  baseCors({
+    origin: env.WEB_ORIGIN || "*",
     credentials: true,
-  }
-) => baseCors(options);
+  });

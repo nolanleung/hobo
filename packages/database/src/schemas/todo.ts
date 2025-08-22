@@ -7,9 +7,7 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-export * from "./auth-schema";
-
-export const todosTable = pgTable("todo", {
+export const todos = pgTable("todo", {
   id: uuid()
     .primaryKey()
     .default(sql`gen_random_uuid()`),

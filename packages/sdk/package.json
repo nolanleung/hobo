@@ -1,0 +1,19 @@
+{
+  "name": "@repo/sdk",
+  "main": "dist/api.d.ts",
+  "scripts": {
+    "build": "bun run src/index.ts",
+    "sdk:generate": "bun run src/index.ts",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^24.3.0"
+  },
+  "dependencies": {
+    "@repo/api": "workspace:^",
+    "@trpc/server": "^11.4.4",
+    "ts-morph": "^26.0.0",
+    "zod": "4.0.17"
+  }
+}

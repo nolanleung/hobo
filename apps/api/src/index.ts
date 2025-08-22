@@ -1,18 +1,16 @@
-import { auth, toNodeHandler } from "@repo/auth";
-import { cors } from "@repo/middleware";
-import express from "express";
+import "dotenv/config";
 
-const app = express();
+import { serve } from "@hono/node-server";
+import { app } from "./server";
+
 const port = process.env.PORT || 8080;
 
-app.use(cors());
-
-app.all("/api/auth/{*any}", toNodeHandler(auth));
-
-// Mount express json middleware after Better Auth handler
-// or only apply it to routes that don't interact with Better Auth
-app.use(express.json());
-
-app.listen(port, () => {
-  console.log(`Hobo app listening on port ${port}`);
-});
+serve(
+  {
+    fetch: app.fetch,
+    port: Number(port),
+  },
+  () => {
+    console.log(`API listening on port ${port}`);
+  }
+);

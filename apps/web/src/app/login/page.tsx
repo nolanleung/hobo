@@ -1,8 +1,9 @@
 "use client";
 
-import { useAuth } from "@/components/auth-provider";
+import { useAuth } from "@/providers/auth-provider";
+import { Button } from "@repo/ui/components/button";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginPage() {
@@ -10,7 +11,12 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signIn, refreshSession } = useAuth();
+  const {
+    signIn,
+    refreshSession,
+    loading: sessionLoading,
+    session,
+  } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,7 +29,7 @@ export default function LoginPage() {
         email,
         password,
       });
-      refreshSession();
+      await refreshSession();
       router.push("/");
     } catch {
       setError("Invalid email or password");
@@ -31,6 +37,24 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
+
+  const handleSocialSignin = (provider: string) => async () => {
+    setLoading(true);
+    try {
+      await signIn.social({
+        provider,
+        callbackURL: `${window.location.origin}/`,
+      });
+      refreshSession();
+      router.push("/");
+    } catch {
+      setError("Failed to sign in with " + provider);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (!sessionLoading && session) return redirect("/");
 
   return (
     <div className="bg-background flex min-h-screen items-center justify-center">
@@ -95,6 +119,15 @@ export default function LoginPage() {
           >
             {loading ? "Signing in..." : "Sign In"}
           </button>
+
+          <Button
+            type="button"
+            onClick={handleSocialSignin("google")}
+            className="w-full"
+            variant="outline"
+          >
+            Continue with Google
+          </Button>
 
           <div className="text-center text-sm">
             <span className="text-muted-foreground">

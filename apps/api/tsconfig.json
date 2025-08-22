@@ -1,3 +1,10 @@
 {
-  "extends": "@repo/typescript-config/base.json"
+  "extends": "@repo/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": false,
+    "declarationMap": false,
+    "jsx": "react",
+    "types": ["node"]
+  }
 }
