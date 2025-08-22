@@ -14,7 +14,7 @@
     },
     {
       "name": "api",
-      "port": 8080,
+      "port": 3001,
       "subdomain": "api",
     },
   ],
