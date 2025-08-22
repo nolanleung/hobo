@@ -10,7 +10,7 @@ export function* iterateNodes(sourceFiles: SourceFile[]) {
 
 export const findNodeOrThrow = (
   sourceFiles: SourceFile[],
-  predicate: (node: Node) => boolean,
+  predicate: (node: Node) => boolean
 ) => {
   for (const [node, sourceFile] of iterateNodes(sourceFiles)) {
     if (predicate(node)) {
@@ -22,7 +22,7 @@ export const findNodeOrThrow = (
 
 export const getFirstSiblingByKindOrThrow = (
   node: Node,
-  kind: ts.SyntaxKind,
+  kind: ts.SyntaxKind
 ) => {
   for (const sibling of node.getNextSiblings()) {
     if (sibling.getKind() === kind) {
@@ -30,6 +30,5 @@ export const getFirstSiblingByKindOrThrow = (
     }
   }
 
-  console.log(node.getText());
   throw new Error(`A sibling of kind ${kind.toString()} was expected.`);
 };
