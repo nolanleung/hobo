@@ -8,10 +8,10 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/cors": "^2.8.19",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "hono": "^4.9.5"
+    "hono": "^4.9.9"
   }
 }

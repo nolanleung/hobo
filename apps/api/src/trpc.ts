@@ -2,13 +2,16 @@ import { auth } from "@repo/auth";
 import { db } from "@repo/database";
 import { initTRPC, TRPCError } from "@trpc/server";
 import { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
+import { noop } from "./lib/noop";
 
 export const createTRPCContext = async (
   c: FetchCreateContextFnOptions,
   ctx: any
 ) => {
   const headers = c.req.headers;
-  const authSession = await auth(ctx.env).api.getSession({ headers });
+  const authSession = await auth(ctx.env)
+    .api.getSession({ headers })
+    .catch(noop);
   const client = db(ctx.env);
 
   return {

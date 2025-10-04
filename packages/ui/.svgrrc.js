@@ -8,7 +8,7 @@ ${variables.imports};
 
 ${variables.interfaces};
 
-const ${variables.componentName.replace(/^Svg/, "Icon")} = (${variables.props}) => (
+export const ${variables.componentName.replace(/^Svg/, "Icon")} = (${variables.props}) => (
   ${variables.jsx}
 );
 
@@ -61,6 +61,35 @@ module.exports = {
                     "$1stroke:currentColor"
                   );
               }
+            },
+          },
+        }),
+      },
+      {
+        name: "sizeAttrs",
+        type: "visitor",
+        fn: () => ({
+          element: {
+            enter: (node) => {
+              // only operate on the root svg element
+              if (node.name !== "svg" || !node.attributes) return;
+              // set width and height to 100%
+              ["width", "height"].forEach((attr) => {
+                node.attributes[attr] = "100%";
+              });
+            },
+          },
+        }),
+      },
+      {
+        name: "slotAttr",
+        type: "visitor",
+        fn: () => ({
+          element: {
+            enter: (node) => {
+              // only operate on the root svg element
+              if (node.name !== "svg" || !node.attributes) return;
+              node.attributes["data-slot"] = "icon";
             },
           },
         }),
