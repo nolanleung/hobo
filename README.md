@@ -7,7 +7,7 @@ Hobo is a modern, production-ready starter template for building full-stack Type
 ## Features
 
 - 🏗️ **Turborepo Monorepo** - Efficient builds and organized code structure
-- ⚡ **Next.js 15** - Latest React 19 features with App Router
+- ⚡ **Next.js 16** - Latest React 19 features with App Router
 - 🔒 **Built-in Authentication** - Better Auth with email/password and OAuth support
 - 🔗 **Type-Safe APIs** - End-to-end type safety with tRPC
 - 🎨 **Tailwind CSS v4** - Utility-first styling with shadcn/ui components
@@ -114,7 +114,7 @@ pnpm --filter=api dev      # Start only the API server
 
 ## Tech Stack
 
-- **Frontend**: Next.js 15, React 19, TypeScript, Tailwind CSS v4, shadcn/ui
+- **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS v4, shadcn/ui
 - **Backend**: tRPC, Better Auth, Bun runtime
 - **Database**: PostgreSQL, Kysely
 - **DevOps**: Turborepo, pnpm workspaces, ESLint, Prettier
