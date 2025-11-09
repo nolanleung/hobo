@@ -4,7 +4,7 @@ import { useAuth } from "@/providers/auth-provider";
 import { Button } from "@repo/ui/components/button";
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -54,7 +54,14 @@ export default function LoginPage() {
     }
   };
 
-  if (!sessionLoading && session) return redirect("/");
+  useEffect(() => {
+    if (sessionLoading) return;
+    if (!session) return;
+
+    redirect("/");
+  }, []);
+
+  if (!sessionLoading && session) return null;
 
   return (
     <div className="bg-background flex min-h-screen items-center justify-center">
