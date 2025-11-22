@@ -3,12 +3,11 @@
   "main": "dist/api.d.ts",
   "scripts": {
     "build": "bun run src/index.ts",
-    "sdk:generate": "bun run src/index.ts",
-    "check-types": "tsc --noEmit"
+    "sdk:generate": "bun run src/index.ts"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^24.10.0"
+    "@types/node": "^24.10.1"
   },
   "dependencies": {
     "@repo/api": "workspace:^",

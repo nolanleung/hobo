@@ -1,5 +1,5 @@
 import { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
-import { todosRouter } from "./routes/todos";
+import { todosRouter } from "./routes";
 import { router } from "./trpc";
 
 export const appRouter = router({

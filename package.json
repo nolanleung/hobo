@@ -3,12 +3,13 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "migrate": "turbo run db:migrate"
   },
   "devDependencies": {
     "eslint": "^9.39.1",
     "prettier": "^3.6.2",
-    "turbo": "^2.6.0"
+    "turbo": "^2.6.1"
   },
   "packageManager": "pnpm@8.15.6",
   "name": "hobo",

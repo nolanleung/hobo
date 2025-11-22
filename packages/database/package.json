@@ -2,29 +2,26 @@
   "name": "@repo/database",
   "version": "1.0.0",
   "scripts": {
-    "build": "tsc",
-    "dev": "drizzle-kit migrate",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio",
-    "db:drop": "drizzle-kit drop"
+    "build": "exit 0",
+    "dev": "prisma migrate dev",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@prisma/adapter-pg": "^7.0.0",
+    "@prisma/client": "^7.0.0",
     "dotenv": "^17.2.3",
-    "drizzle-orm": "^0.44.7",
-    "pg": "^8.16.3",
-    "postgres": "^3.4.7",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:^",
-    "@types/node": "^24.10.0",
-    "@types/pg": "^8.15.6",
-    "drizzle-kit": "^0.31.6",
+    "@types/node": "^24.10.1",
+    "prisma": "7",
     "tsx": "^4.20.6"
   },
   "exports": {

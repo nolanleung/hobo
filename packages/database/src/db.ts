@@ -1,15 +1,11 @@
+import { PrismaPg } from "@prisma/adapter-pg";
 import "dotenv/config";
+import { PrismaClient } from "../prisma/generated/client";
 
-import { drizzle as drizzlePg } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
+export const db = () => {
+  const connectionString = `${process.env.DATABASE_URL}`;
+  const adapter = new PrismaPg({ connectionString });
+  const prisma = new PrismaClient({ adapter });
 
-import * as schema from "./schemas/schema";
-
-export const db = (env = process.env) => {
-  const client = postgres(env.DATABASE_URL!, { prepare: false });
-  return drizzlePg({ client, schema });
+  return prisma;
 };
-
-export { schema };
-
-export * from "drizzle-orm";

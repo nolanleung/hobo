@@ -8,7 +8,9 @@ import { createTRPCContext } from "./trpc";
 export const app = new Hono<{ Bindings: {} }>();
 
 app.use(cors(process.env));
-app.all("/api/auth/*", (c) => auth(process.env).handler(c.req.raw));
+app.all("/api/auth/*", (c) =>
+  auth({ WEB_ORIGIN: "http://localhost:3000" }).handler(c.req.raw)
+);
 app.use(
   "/trpc/*",
   trpcServer({

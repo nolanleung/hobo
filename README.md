@@ -85,13 +85,14 @@ apps/
 └── api/          # tRPC API server
 
 packages/
-├── @repo/auth/      # Shared authentication logic
-├── @repo/database/  # Database client and schemas
-├── @repo/ui/        # Shared UI components
+├── @repo/auth/           # Shared authentication logic
+├── @repo/database/       # Database client and schemas
+├── @repo/ui/             # Shared UI components
+├── @repo/sdk/            # Type-safe client generation
+├── @repo/middleware/     # HTTP middleware utilities
 ├── @repo/eslint-config/
-└── @repo/typescript-config/
-
-create-hobo/      # CLI for scaffolding new projects
+├── @repo/typescript-config/
+└── @repo/create-hobo/    # CLI for scaffolding new projects
 ```
 
 ## Available Scripts
@@ -116,7 +117,7 @@ pnpm --filter=api dev      # Start only the API server
 
 - **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS v4, shadcn/ui
 - **Backend**: tRPC, Better Auth, Bun runtime
-- **Database**: PostgreSQL, Kysely
+- **Database**: PostgreSQL, Prisma
 - **DevOps**: Turborepo, pnpm workspaces, ESLint, Prettier
 - **Authentication**: Email/password, OAuth providers (GitHub, Google)
 
@@ -132,10 +133,10 @@ Hobo includes a complete authentication system:
 
 ## Database
 
-Uses PostgreSQL with Drizzle ORM:
+Uses PostgreSQL with Prisma:
 
 ```bash
-# Generate migration files from schema changes
+# Generate Prisma client from schema changes
 pnpm --filter=@repo/database db:generate
 
 # Apply migrations to database
@@ -144,7 +145,7 @@ pnpm --filter=@repo/database db:migrate
 # Push schema changes directly (development)
 pnpm --filter=@repo/database db:push
 
-# Open Drizzle Studio for database management
+# Open Prisma Studio for database management
 pnpm --filter=@repo/database db:studio
 ```
 

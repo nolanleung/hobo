@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Hobo is a modern full-stack TypeScript starter template using a Turborepo monorepo structure with Next.js 15, tRPC, Better Auth, and Drizzle ORM.
+Hobo is a modern full-stack TypeScript starter template using a Turborepo monorepo structure with Next.js 16, tRPC, Better Auth, and Prisma.
 
 ## Essential Commands
 
@@ -18,10 +18,10 @@ pnpm format       # Format code with Prettier
 
 ### Database Operations
 ```bash
-pnpm --filter=@repo/database db:generate  # Generate migration files from schema changes
+pnpm --filter=@repo/database db:generate  # Generate Prisma client from schema changes
 pnpm --filter=@repo/database db:migrate   # Apply migrations to database
 pnpm --filter=@repo/database db:push      # Push schema directly (dev only)
-pnpm --filter=@repo/database db:studio    # Open Drizzle Studio GUI
+pnpm --filter=@repo/database db:studio    # Open Prisma Studio GUI
 ```
 
 ### Running Individual Apps
@@ -33,10 +33,10 @@ pnpm --filter=api dev      # Start only the tRPC API server
 ## Architecture
 
 ### Monorepo Structure
-- **apps/web**: Next.js 15 frontend with App Router, React 19, Tailwind CSS v4
+- **apps/web**: Next.js 16 frontend with App Router, React 19, Tailwind CSS v4
 - **apps/api**: tRPC API server running on Hono framework with Bun runtime
 - **packages/auth**: Better Auth integration with email/password and OAuth
-- **packages/database**: Drizzle ORM with PostgreSQL, includes user/session/todo schemas
+- **packages/database**: Prisma ORM with PostgreSQL, includes user/session/todo schemas
 - **packages/ui**: Shared shadcn/ui components with Tailwind CSS
 - **packages/sdk**: TypeScript AST manipulation for type-safe client generation
 - **packages/middleware**: HTTP middleware utilities
@@ -46,16 +46,16 @@ pnpm --filter=api dev      # Start only the tRPC API server
 
 1. **Type-Safe API Communication**: The tRPC router in `apps/api/src/index.ts` defines the API surface. The SDK package transforms these server-side definitions into client-side hooks automatically.
 
-2. **Authentication Flow**: 
-   - Better Auth configured in `packages/auth/src/auth.ts`
-   - Drizzle adapter connects auth to PostgreSQL
+2. **Authentication Flow**:
+   - Better Auth configured in `packages/auth/auth.ts`
+   - Prisma adapter connects auth to PostgreSQL
    - Session management handled automatically
    - Auth context available in tRPC procedures via `ctx.auth`
 
-3. **Database Schema**: 
-   - Auth tables (users, sessions, accounts, verification) in `packages/database/src/schema/auth.ts`
-   - Business logic tables in `packages/database/src/schema/todos.ts`
-   - Use Drizzle's schema-first approach for type safety
+3. **Database Schema**:
+   - Auth schema defined in `packages/database/prisma/auth.prisma`
+   - Business logic schema in `packages/database/prisma/schema.prisma`
+   - Use Prisma's schema-first approach for type safety
 
 4. **Frontend Structure**:
    - App Router with authentication-aware layouts
@@ -71,11 +71,12 @@ pnpm --filter=api dev      # Start only the tRPC API server
 ### Adding New Features
 
 When implementing new features:
-1. Define database schema in `packages/database/src/schema/`
-2. Create tRPC procedures in `apps/api/src/index.ts`
-3. SDK automatically generates client types
-4. Use generated hooks in React components
-5. Follow existing patterns for consistency
+1. Define database schema in `packages/database/prisma/*.prisma`
+2. Run `pnpm --filter=@repo/database db:generate` to update Prisma client
+3. Create tRPC procedures in `apps/api/src/router.ts`
+4. SDK automatically generates client types
+5. Use generated hooks in React components
+6. Follow existing patterns for consistency
 
 ### Environment Variables
 
