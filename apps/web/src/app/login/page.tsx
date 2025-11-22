@@ -119,19 +119,19 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <button
+          <Button
             type="submit"
             disabled={loading}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 w-full rounded-md px-4 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full"
+            variant="default"
           >
             {loading ? "Signing in..." : "Sign In"}
-          </button>
+          </Button>
 
           <Button
             type="button"
             onClick={handleSocialSignin("google")}
             className="w-full"
-            variant="outline"
           >
             Continue with Google
           </Button>

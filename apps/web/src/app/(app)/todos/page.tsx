@@ -1,6 +1,7 @@
 "use client";
 
 import { useCreateTodo, useTodos } from "@/hooks/useTodos";
+import { Button } from "@repo/ui/components/button";
 
 export default function TodosPage() {
   const { data: { data: todos = [] } = {}, isLoading, error } = useTodos();
@@ -17,12 +18,7 @@ export default function TodosPage() {
   return (
     <div className="p-4">
       <h1 className="mb-4 text-2xl font-bold">Todo List</h1>
-      <button
-        className="mb-4 rounded bg-white px-4 py-2 text-black"
-        onClick={() => create({ title: "New Todo" })}
-      >
-        Add Todo
-      </button>
+      <Button onClick={() => create({ title: "New Todo" })}>Add Todo</Button>
       <ul className="space-y-2">
         {todos.map((todo) => (
           <li key={todo.id} className="rounded border p-2">

@@ -33,7 +33,7 @@ export default function Home() {
             <Button asChild>
               <Link href="/login">Sign In</Link>
             </Button>
-            <Button variant="outline" asChild>
+            <Button asChild>
               <Link href="/signup">Sign Up</Link>
             </Button>
           </div>
