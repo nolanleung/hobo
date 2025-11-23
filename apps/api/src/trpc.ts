@@ -1,26 +1,32 @@
-import { auth } from "@repo/auth";
+import { PrismaD1 } from "@prisma/adapter-d1";
+import { auth, prismaAdapter } from "@repo/auth";
 import { db } from "@repo/database";
 import { initTRPC, TRPCError } from "@trpc/server";
 import { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 import { noop } from "./lib/noop";
 
-export const createTRPCContext = async (
-  c: FetchCreateContextFnOptions,
-  ctx: any
-) => {
-  const headers = c.req.headers;
-  const authSession = await auth(ctx.env)
-    .api.getSession({ headers })
-    .catch(noop);
-  const client = db(ctx.env);
+export const createTRPCContext =
+  (env: Env) => async (c: FetchCreateContextFnOptions, ctx: any) => {
+    const headers = c.req.headers;
+    const adapter = new PrismaD1(env.HOBO_DB);
+    const prisma = await db({ adapter });
+    const betterAuthAdapter = prismaAdapter(prisma, {
+      provider: "sqlite",
+    });
 
-  return {
-    user: authSession?.user,
-    headers,
-    db: client,
-    env: ctx.env,
+    const authSession = await auth({
+      adapter: betterAuthAdapter,
+      WEB_ORIGIN: env.WEB_ORIGIN,
+    })
+      .api.getSession({ headers })
+      .catch(noop);
+
+    return {
+      user: authSession?.user,
+      db: prisma,
+      env: ctx.env,
+    };
   };
-};
 type Context = Awaited<ReturnType<typeof createTRPCContext>>;
 
 /**
@@ -43,7 +49,7 @@ export const authProcedure = t.procedure.use(({ ctx, next }) => {
   return next({
     ctx: {
       user: ctx.user,
-      headers: ctx.headers,
+      // headers: ctx.headers,
     },
   });
 });

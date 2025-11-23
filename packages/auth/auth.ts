@@ -1,15 +1,16 @@
-import { db } from "@repo/database";
-import { betterAuth, BetterAuthOptions } from "better-auth";
-import { prismaAdapter } from "better-auth/adapters/prisma";
+import { betterAuth, BetterAuthOptions, DBAdapterInstance } from "better-auth";
 import { username } from "better-auth/plugins";
 
-export const auth = (env: { WEB_ORIGIN: string }) => {
+type AuthOptions = {
+  WEB_ORIGIN: string;
+  adapter: DBAdapterInstance;
+};
+
+export const auth = (env: AuthOptions) => {
   const authConfig = {
     telemetry: { enabled: false },
     trustedOrigins: [env.WEB_ORIGIN!],
-    database: prismaAdapter(db(), {
-      provider: "postgresql",
-    }),
+    database: env.adapter,
 
     emailAndPassword: {
       enabled: true,
@@ -23,12 +24,8 @@ export const auth = (env: { WEB_ORIGIN: string }) => {
   >;
 };
 
+export { prismaAdapter } from "better-auth/adapters/prisma";
+
 export { fromNodeHeaders, toNodeHandler } from "better-auth/node";
 
 export type Session = ReturnType<typeof auth>["$Infer"]["Session"];
-
-const client = auth({
-  WEB_ORIGIN: "http://localhost:3000",
-});
-
-export default client;

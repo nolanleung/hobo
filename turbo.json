@@ -13,6 +13,9 @@
     },
     "db:migrate": {
       "cache": false
+    },
+    "deploy": {
+      "cache": false
     }
   }
 }
