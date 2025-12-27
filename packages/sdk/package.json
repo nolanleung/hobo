@@ -7,12 +7,12 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^24.10.1"
+    "@types/node": "^25.0.3"
   },
   "dependencies": {
     "@repo/api": "workspace:^",
-    "@trpc/server": "^11.7.1",
+    "@trpc/server": "^11.8.1",
     "ts-morph": "^27.0.2",
-    "zod": "4.1.12"
+    "zod": "4.2.1"
   }
 }
