@@ -119,20 +119,11 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <Button
-            type="submit"
-            disabled={loading}
-            className="w-full"
-            variant="default"
-          >
+          <Button type="submit" disabled={loading} className="w-full">
             {loading ? "Signing in..." : "Sign In"}
           </Button>
 
-          <Button
-            type="button"
-            onClick={handleSocialSignin("google")}
-            className="w-full"
-          >
+          <Button type="button" onClick={handleSocialSignin("google")} full>
             Continue with Google
           </Button>
 

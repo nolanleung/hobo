@@ -26,15 +26,17 @@ export default function Home() {
             <p className="text-muted-foreground text-sm">
               {session.user.email}
             </p>
-            <Button onClick={handleSignOut}>Sign Out</Button>
+            <Button onClick={handleSignOut} className="inline-block">
+              Sign out
+            </Button>
           </div>
         ) : (
-          <div className="space-x-4">
+          <div className="flex items-center gap-4">
             <Button asChild>
-              <Link href="/login">Sign In</Link>
+              <Link href="/login">Sign in</Link>
             </Button>
             <Button asChild>
-              <Link href="/signup">Sign Up</Link>
+              <Link href="/signup">Sign up</Link>
             </Button>
           </div>
         )}

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { tv, VariantProps } from "tailwind-variants";
 
 const button = tv({
-  base: "font-medium bg-blue-500 text-white rounded active:opacity-80 py-",
+  base: "font-medium bg-blue-500 text-white rounded active:opacity-80 flex items-center justify-center",
   variants: {
     variant: {
       primary: "bg-slate-600 text-white",
@@ -13,8 +13,12 @@ const button = tv({
     },
     size: {
       sm: "text-sm h-6",
-      md: "text-base h-8",
-      lg: "px-4 py-3 h-10 text-lg",
+      md: "text-sm h-10",
+      lg: "px-4 py-3 h-12 text-lg",
+    },
+    full: {
+      true: "w-full",
+      false: "",
     },
   },
   compoundVariants: [
@@ -26,6 +30,7 @@ const button = tv({
   defaultVariants: {
     size: "md",
     variant: "default",
+    full: false,
   },
 });
 
@@ -35,6 +40,7 @@ function Button({
   className,
   size,
   variant,
+  full,
   asChild = false,
   ...props
 }: React.ComponentProps<"button"> &
@@ -46,7 +52,7 @@ function Button({
   return (
     <Comp
       data-slot="button"
-      className={cn(button({ size, variant, className }))}
+      className={cn(button({ size, variant, className, full }))}
       {...props}
     />
   );

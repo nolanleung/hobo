@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "build": "exit 0",
-    "dev": "prisma migrate dev",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
+    "db:migrate:dev": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:studio": "prisma studio"
   },

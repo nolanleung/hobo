@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:latest
-    container_name: postgres
+    container_name: hobo-postgres
     environment:
       POSTGRES_USER: hobo
       POSTGRES_PASSWORD: hobo
